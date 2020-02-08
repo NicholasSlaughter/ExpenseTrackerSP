@@ -4,11 +4,54 @@
              xmlns:local="clr-namespace:ExpenseTrackerSP"
              x:Class="ExpenseTrackerSP.MainPage">
 
-    <StackLayout>
-        <!-- Place new controls here -->
-        <Label Text="Welcome to Xamarin.Forms!" 
-           HorizontalOptions="Center"
-           VerticalOptions="CenterAndExpand" />
-    </StackLayout>
+	<StackLayout>
+		 <!--Place new controls here--> 
+		<Label Text="Amount:" 
+           HorizontalOptions="Start"
+           VerticalOptions="Start" />
+		<Entry x:Name="amountEntry"
+			   Placeholder="$0.00"
+			   PlaceholderColor="Gray"
+			   MaxLength="10"/>
+
+		<Label Text="Category:" 
+           HorizontalOptions="Start"
+           VerticalOptions="Start" />	
+		<Picker x:Name="categoryPicker"
+				Title="Select Category"
+				TextColor="Red"
+				ItemsSource="{Binding Category}"
+				ItemDisplayBinding="{Binding Name}"/>
+		<!--Include list of categories-->
+
+		<Button Text="Submit"
+				HorizontalOptions="Center"
+				VerticalOptions="CenterAndExpand"
+				Clicked="SubmitButton_Clicked"/>
+		
+		<Grid>
+			<Grid.RowDefinitions>
+				<RowDefinition Height="*"/>
+			</Grid.RowDefinitions>
+			<Grid.ColumnDefinitions>
+				<ColumnDefinition Width="auto"/>
+				<ColumnDefinition Width="*"/>
+				<ColumnDefinition Width="*"/>
+			</Grid.ColumnDefinitions>
+			
+			<Button Text="Home" FontSize="Micro"
+					Grid.Column="1" 
+					Clicked="NavigateButton_Home"/>
+
+			<Button Text="History" FontSize="Micro"
+					Grid.Column="2" 
+					Clicked="NavigateButton_History"/>
+
+			<Button Text="Settings" FontSize="Micro"
+					Grid.Column="3" 
+					Clicked="NavigateButton_Settings"/>
+		</Grid>
+		
+	</StackLayout>
 
 </ContentPage>

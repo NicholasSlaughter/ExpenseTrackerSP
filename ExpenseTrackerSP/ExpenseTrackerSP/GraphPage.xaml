@@ -1,0 +1,28 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+			 xmlns:oxy="clr-namespace:OxyPlot.Xamarin.Forms;assembly=OxyPlot.Xamarin.Forms"
+             x:Class="ExpenseTrackerSP.GraphPage">
+	
+	<AbsoluteLayout>
+			<oxy:PlotView Model="{Binding LineModel}"
+                  AbsoluteLayout.LayoutBounds=".5,.5,.9,.9"
+                  AbsoluteLayout.LayoutFlags="WidthProportional,HeightProportional" />
+
+		<Grid>
+			<Grid.RowDefinitions>
+				<RowDefinition Height="*"/>
+			</Grid.RowDefinitions>
+			<Grid.ColumnDefinitions>
+				<ColumnDefinition Width="auto"/>
+				<ColumnDefinition Width="*"/>
+				<ColumnDefinition Width="*"/>
+			</Grid.ColumnDefinitions>
+
+			<Button Text="Sort" FontSize="Micro"
+					Grid.Row="6"
+					Grid.Column="3" 
+					Clicked="SortButton_Clicked"/>
+		</Grid>
+	</AbsoluteLayout>
+</ContentPage>
