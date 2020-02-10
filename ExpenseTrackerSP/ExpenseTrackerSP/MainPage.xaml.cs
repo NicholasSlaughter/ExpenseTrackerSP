@@ -78,19 +78,14 @@ namespace ExpenseTrackerSP
             }
         }
 
-        private async void NavigateButton_Home(object sender, EventArgs e)
-        {
-            //await Navigation.PushAsync(new MainPage());
-        }
-
         private async void NavigateButton_History(object sender, EventArgs e)
         {
             await Navigation.PushAsync(new HistoryPage());
         }
 
-        private async void NavigateButton_Settings(object sender, EventArgs e)
+        private async void ViewAlerts_Clicked(object sender, EventArgs e)
         {
-            await Navigation.PushAsync(new SettingsPage());
+            await Navigation.PushAsync(new ViewAlerts());
         }
 
         protected override async void OnAppearing()

@@ -4,57 +4,56 @@
              x:Class="ExpenseTrackerSP.SettingsPage">
     <ContentPage.Content>
 		<StackLayout>
-			<Grid Padding="10">
-				<Grid.RowDefinitions>
-					<RowDefinition Height="Auto" />
-				</Grid.RowDefinitions>
-				<Grid.ColumnDefinitions>
-					<ColumnDefinition Width="Auto" />
-				</Grid.ColumnDefinitions>
-				<Label Grid.Column="1"
-							   Text="Set Notification For: "/>
-				<Picker Grid.Column="2"
+
+			<StackLayout Orientation="Horizontal">
+				<Label
+					Text="Alert Period: "
+					HorizontalOptions="Start"
+					VerticalOptions="Center"/>
+				<Picker
+					HorizontalOptions="FillAndExpand"
 					x:Name="periodPicker"
 					Title="Select Period"
 					TextColor="Red"
 					ItemsSource="{Binding Period}"
 					ItemDisplayBinding="{Binding Name}"/>
-				<Label Grid.Row="2"
-				   Grid.Column="1"
+			</StackLayout>
+
+			<StackLayout Orientation="Horizontal">
+				<Label
+					HorizontalOptions="Start"
+					VerticalOptions="Center"
 				   Text="Set Amount: "/>
-				<Entry Grid.Row="2"
-				   Grid.Column="2"
+				<Entry 
+					HorizontalOptions="FillAndExpand"
 				   x:Name="amountEntry"
 				   Placeholder="$0.00"
 				   PlaceholderColor="Gray"
 				   MaxLength="10"/>
-				<Label Grid.Row="3"
-				   Grid.Column="1"
+			</StackLayout>
+
+			<StackLayout Orientation="Horizontal">
+				<Label
+					HorizontalOptions="Start"
+					VerticalOptions="Center"
 				   Text="Set Category: "/>
-				<Picker Grid.Row="3"
-				    Grid.Column="2"
+				<Picker
+					HorizontalOptions="FillAndExpand"
 					x:Name="categoryPicker"
 				    Title="Select Category"
 					FontSize="Small"
 					TextColor="Red"
 					ItemsSource="{Binding Category}"
 					ItemDisplayBinding="{Binding Name}"/>
-				<Button 
-					Grid.Row="4"
-				    Grid.Column="1"
+			</StackLayout>
+			
+
+			<Button 
+					HorizontalOptions="Center"
 					Text="Submit"
-					HorizontalOptions="Center"
-					VerticalOptions="CenterAndExpand"
+					FontSize="Micro"
 					Clicked="SubmitButton_Clicked"/>
-				<Button 
-					Grid.Row="4"
-				    Grid.Column="2"
-					Text="View Alerts"
-					FontSize="Small"
-					HorizontalOptions="Center"
-					VerticalOptions="CenterAndExpand"
-					Clicked="ViewAlerts_Clicked"/>
-			</Grid>
+
 		</StackLayout>
 	</ContentPage.Content>
 </ContentPage>

@@ -3,6 +3,21 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="ExpenseTrackerSP.HistoryPage">
 	<StackLayout>
+		<StackLayout Orientation="Horizontal" Padding="10">
+			<Label FontSize="Small"
+				   HorizontalOptions="StartAndExpand"
+				   Text="Category">
+			</Label>
+			<Label FontSize="Small"
+				   HorizontalOptions="CenterAndExpand"
+				   Text="Date">
+			</Label>
+			<Label FontSize="Small"
+				   HorizontalOptions="EndAndExpand"
+				   Text="Amount">
+			</Label>
+		</StackLayout>
+		
 			<ListView x:Name="listView"	
 					  ItemTapped="Handle_ItemTapped">
 			<ListView.ItemTemplate>
@@ -18,11 +33,14 @@
 								<ColumnDefinition Width="*" />
 							</Grid.ColumnDefinitions>
 							<Label Grid.Column="1"
+								   HorizontalOptions="StartAndExpand"
 								   Text="{Binding CategoryName}"
 								   FontAttributes="Bold"/>
 							<Label Grid.Column="2"
+								   HorizontalOptions="EndAndExpand"
 								   Text="{Binding Date}"/>
 							<Label Grid.Column="3"
+								   HorizontalOptions="EndAndExpand"
 								   Text="{Binding Amount}"/>
 						</Grid>
 					</ViewCell>

@@ -5,23 +5,31 @@
              x:Class="ExpenseTrackerSP.MainPage">
 
 	<StackLayout>
-		 <!--Place new controls here--> 
-		<Label Text="Amount:" 
+		 <!--Place new controls here-->
+		<StackLayout Orientation="Horizontal">
+			<Label Text="Amount:" 
            HorizontalOptions="Start"
-           VerticalOptions="Start" />
-		<Entry x:Name="amountEntry"
+				   VerticalOptions="Center"
+				   FontSize="Medium"/>
+			<Entry x:Name="amountEntry"
+			   HorizontalOptions="FillAndExpand"
 			   Placeholder="$0.00"
 			   PlaceholderColor="Gray"
 			   MaxLength="10"/>
+		</StackLayout>
 
-		<Label Text="Category:" 
+		<StackLayout Orientation="Horizontal">
+			<Label Text="Category:" 
            HorizontalOptions="Start"
-           VerticalOptions="Start" />	
-		<Picker x:Name="categoryPicker"
+				   VerticalOptions="Center"
+				   FontSize="Medium"/>
+			<Picker x:Name="categoryPicker"
+				HorizontalOptions="FillAndExpand"
 				Title="Select Category"
 				TextColor="Red"
 				ItemsSource="{Binding Category}"
 				ItemDisplayBinding="{Binding Name}"/>
+		</StackLayout>
 		<!--Include list of categories-->
 
 		<Button Text="Submit"
@@ -38,18 +46,14 @@
 				<ColumnDefinition Width="*"/>
 				<ColumnDefinition Width="*"/>
 			</Grid.ColumnDefinitions>
-			
-			<Button Text="Home" FontSize="Micro"
-					Grid.Column="1" 
-					Clicked="NavigateButton_Home"/>
 
 			<Button Text="History" FontSize="Micro"
-					Grid.Column="2" 
+					Grid.Column="1" 
 					Clicked="NavigateButton_History"/>
 
-			<Button Text="Settings" FontSize="Micro"
+			<Button Text="Alerts" FontSize="Micro"
 					Grid.Column="3" 
-					Clicked="NavigateButton_Settings"/>
+					Clicked="ViewAlerts_Clicked"/>
 		</Grid>
 		
 	</StackLayout>

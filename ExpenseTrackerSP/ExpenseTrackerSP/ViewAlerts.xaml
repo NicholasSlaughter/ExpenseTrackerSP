@@ -4,6 +4,22 @@
              x:Class="ExpenseTrackerSP.ViewAlerts">
     <ContentPage.Content>
         <StackLayout>
+
+			<StackLayout Orientation="Horizontal">
+				<Label FontSize="Small"
+				   HorizontalOptions="StartAndExpand"
+				   Text="Period">
+				</Label>
+				<Label FontSize="Small"
+				   HorizontalOptions="CenterAndExpand"
+				   Text="Category">
+				</Label>
+				<Label FontSize="Small"
+				   HorizontalOptions="EndAndExpand"
+				   Text="Amount">
+				</Label>
+			</StackLayout>
+
 			<ListView x:Name="alertsListView"
 					  ItemTapped="Handle_ItemTapped">
 				<ListView.ItemTemplate>
@@ -24,7 +40,8 @@
 								<Label Grid.Column="2"
 							   Text="{Binding CategoryName}"/>
 								<Label Grid.Column="3"
-							   Text="{Binding MaxAmount}"/>
+							   Text="{Binding MaxAmount}"
+									   HorizontalOptions="End"/>
 							</Grid>
 						</ViewCell>
 					</DataTemplate>
@@ -39,6 +56,12 @@
 					<ColumnDefinition Width="*"/>
 					<ColumnDefinition Width="*"/>
 				</Grid.ColumnDefinitions>
+
+				<Button 
+					Grid.Column="1" 
+					Text="Set Alerts"
+					FontSize="Micro"
+					Clicked="NavigateButton_Settings"/>
 
 				<Button Text="Sort" FontSize="Micro"
 					Grid.Column="2" 
