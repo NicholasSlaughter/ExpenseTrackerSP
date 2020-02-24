@@ -36,6 +36,7 @@ namespace ExpenseTrackerSP
 
                     double tempOut;
 
+                    //error handling for amount field
                     if (!string.IsNullOrWhiteSpace(amountEntry.Text) && double.TryParse(amountEntry.Text, out tempOut))
                     {
                         await App.Database.SaveNotificationAsync(new Notification
