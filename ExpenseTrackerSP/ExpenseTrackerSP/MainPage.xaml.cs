@@ -96,24 +96,41 @@ namespace ExpenseTrackerSP
 
         async void SubmitButton_Clicked(object sender, EventArgs e)
         {
-
-            var temp = (Category)categoryPicker.SelectedItem;
-            var categoryName = temp.Name;
-            if (!string.IsNullOrWhiteSpace(amountEntry.Text))
+            if (categoryPicker.SelectedIndex != -1)
             {
-                await App.Database.SaveExpenseAsync(new Expense
+                var tempCategory = (Category)categoryPicker.SelectedItem;
+                var categoryName = tempCategory.Name;
+                double tempOut;
+
+                if (!string.IsNullOrWhiteSpace(amountEntry.Text) && double.TryParse(amountEntry.Text, out tempOut))
                 {
-                    Amount = double.Parse(amountEntry.Text),
-                    Date = DateTime.Now,
-                    CategoryName = categoryName
-                });
+                    
+                   await App.Database.SaveExpenseAsync(new Expense
+                   {
+                       Amount = double.Parse(amountEntry.Text),
+                       Date = DateTime.Now,
+                       CategoryName = categoryName
+                   });
 
-                var overspendingChecker = await App.Database.GetNotificationAsync();
+                   var overspendingChecker = await App.Database.GetNotificationAsync();
 
-                CurrentAmountResetter(overspendingChecker);
+                   CurrentAmountResetter(overspendingChecker);
 
-                AlertChecker(overspendingChecker, categoryName, double.Parse(amountEntry.Text));
-               
+                   AlertChecker(overspendingChecker, categoryName, double.Parse(amountEntry.Text));
+
+                   amountEntry.Text = string.Empty;
+                   categoryPicker.SelectedItem = null;
+                }
+                else
+                {
+                    await DisplayAlert("Alert", "You can only enter a number in the amount field!", "OK");
+                    amountEntry.Text = string.Empty;
+                    categoryPicker.SelectedItem = null;
+                }
+            }
+            else
+            {
+                await DisplayAlert("Alert", "You have to select a category!", "OK");
                 amountEntry.Text = string.Empty;
                 categoryPicker.SelectedItem = null;
             }

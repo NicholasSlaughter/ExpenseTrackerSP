@@ -24,22 +24,51 @@ namespace ExpenseTrackerSP
         }
         async void SubmitButton_Clicked(object sender, EventArgs e)
         {
-            var categoryTemp = (Category)categoryPicker.SelectedItem;
-            var periodTemp = (Period)periodPicker.SelectedItem;
-
-            var categoryName = categoryTemp.Name;
-            var periodName = periodTemp.Name;
-
-            if (!string.IsNullOrWhiteSpace(amountEntry.Text))
+            if (categoryPicker.SelectedIndex != -1)
             {
-                await App.Database.SaveNotificationAsync(new Notification
+                if (periodPicker.SelectedIndex != -1)
                 {
-                    MaxAmount = double.Parse(amountEntry.Text),
-                    CurrentAmount = 0,
-                    Period = periodName,
-                    CategoryName = categoryName
-                });
-                var a = new Period();
+                    var categoryTemp = (Category)categoryPicker.SelectedItem;
+                    var periodTemp = (Period)periodPicker.SelectedItem;
+
+                    var categoryName = categoryTemp.Name;
+                    var periodName = periodTemp.Name;
+
+                    double tempOut;
+
+                    if (!string.IsNullOrWhiteSpace(amountEntry.Text) && double.TryParse(amountEntry.Text, out tempOut))
+                    {
+                        await App.Database.SaveNotificationAsync(new Notification
+                        {
+                            MaxAmount = double.Parse(amountEntry.Text),
+                            CurrentAmount = 0,
+                            Period = periodName,
+                            CategoryName = categoryName
+                        });
+                        var a = new Period();
+                        amountEntry.Text = string.Empty;
+                        categoryPicker.SelectedItem = null;
+                        periodPicker.SelectedItem = null;
+                    }
+                    else
+                    {
+                        await DisplayAlert("Alert", "You can only enter a number in the amount field!", "OK");
+                        amountEntry.Text = string.Empty;
+                        categoryPicker.SelectedItem = null;
+                        periodPicker.SelectedItem = null;
+                    }
+                }
+                else
+                {
+                    await DisplayAlert("Alert", "You have to select a period!", "OK");
+                    amountEntry.Text = string.Empty;
+                    categoryPicker.SelectedItem = null;
+                    periodPicker.SelectedItem = null;
+                }
+            }
+            else
+            {
+                await DisplayAlert("Alert", "You have to select a category!", "OK");
                 amountEntry.Text = string.Empty;
                 categoryPicker.SelectedItem = null;
                 periodPicker.SelectedItem = null;
