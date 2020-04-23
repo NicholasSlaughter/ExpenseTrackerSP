@@ -120,6 +120,8 @@ namespace ExpenseTrackerSP
 
                    amountEntry.Text = string.Empty;
                    categoryPicker.SelectedItem = null;
+
+                    await DisplayAlert("Confirmed", "You Entered an Expense", "OK");
                 }
                 else
                 {

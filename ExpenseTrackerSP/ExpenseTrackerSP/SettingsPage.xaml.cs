@@ -50,6 +50,8 @@ namespace ExpenseTrackerSP
                         amountEntry.Text = string.Empty;
                         categoryPicker.SelectedItem = null;
                         periodPicker.SelectedItem = null;
+
+                        await DisplayAlert("Confirmed", "You Entered an Alert", "OK");
                     }
                     else
                     {
