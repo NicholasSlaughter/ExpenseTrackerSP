@@ -28,7 +28,7 @@
 			<Picker x:Name="categoryPicker"
 				HorizontalOptions="FillAndExpand"
 				Title="Select Category"
-				TextColor="Red"
+				TextColor="Blue"
 				ItemsSource="{Binding Category}"
 				ItemDisplayBinding="{Binding Name}"/>
 		</StackLayout>

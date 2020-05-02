@@ -39,6 +39,8 @@
 							<Label Grid.Column="2"
 								   HorizontalOptions="EndAndExpand"
 								   Text="{Binding Date}"/>
+							<Label Grid.Column="3"								   
+								   Text="$ "/>
 							<Label Grid.Column="3"
 								   HorizontalOptions="EndAndExpand"
 								   Text="{Binding Amount}"/>

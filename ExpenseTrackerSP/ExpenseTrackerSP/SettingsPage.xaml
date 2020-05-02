@@ -14,7 +14,7 @@
 					HorizontalOptions="FillAndExpand"
 					x:Name="periodPicker"
 					Title="Select Period"
-					TextColor="Red"
+					TextColor="Blue"
 					ItemsSource="{Binding Period}"
 					ItemDisplayBinding="{Binding Name}"/>
 			</StackLayout>
@@ -42,7 +42,7 @@
 					x:Name="categoryPicker"
 				    Title="Select Category"
 					FontSize="Small"
-					TextColor="Red"
+					TextColor="Blue"
 					ItemsSource="{Binding Category}"
 					ItemDisplayBinding="{Binding Name}"/>
 			</StackLayout>
