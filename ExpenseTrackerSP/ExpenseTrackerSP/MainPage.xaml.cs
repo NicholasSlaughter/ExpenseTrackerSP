@@ -98,34 +98,58 @@ namespace ExpenseTrackerSP
         {
             if (categoryPicker.SelectedIndex != -1)
             {
-                var tempCategory = (Category)categoryPicker.SelectedItem;
-                var categoryName = tempCategory.Name;
-                double tempOut;
-
-                if (!string.IsNullOrWhiteSpace(amountEntry.Text) && double.TryParse(amountEntry.Text, out tempOut))
+                if (double.Parse(amountEntry.Text) <= 1000000)
                 {
-                    
-                   await App.Database.SaveExpenseAsync(new Expense
-                   {
-                       Amount = double.Parse(amountEntry.Text),
-                       Date = DateTime.Now,
-                       CategoryName = categoryName
-                   });
+                    var tempCategory = (Category)categoryPicker.SelectedItem;
+                    var categoryName = tempCategory.Name;
+                    double tempOut;
+                    string formatedAmount = string.Format("{0:0.00}", double.Parse(amountEntry.Text));
 
-                   var overspendingChecker = await App.Database.GetNotificationAsync();
+                    //Need to make Amount a string for it to have trailing 0's
+                    //string formatedDouble = null;
 
-                   CurrentAmountResetter(overspendingChecker);
+                    //if (!formatedAmount.Contains("."))
+                    //{
+                    //    formatedAmount = formatedAmount + ".00";
+                    //}
 
-                   AlertChecker(overspendingChecker, categoryName, double.Parse(amountEntry.Text));
+                    //formatedDouble = formatedAmount.Remove(0, formatedAmount.Length - 3);
+                    //if (!formatedDouble[0].Equals('.'))
+                    //{
+                    //    formatedAmount = formatedAmount + "0";
+                    //}
 
-                   amountEntry.Text = string.Empty;
-                   categoryPicker.SelectedItem = null;
+                    if (!string.IsNullOrWhiteSpace(amountEntry.Text) && double.TryParse(amountEntry.Text, out tempOut))
+                    {
 
-                    await DisplayAlert("Confirmed", "You Entered an Expense", "OK");
+                        await App.Database.SaveExpenseAsync(new Expense
+                        {
+                            Amount = Convert.ToDouble(formatedAmount),
+                            Date = DateTime.Now,
+                            CategoryName = categoryName
+                        });
+
+                        var overspendingChecker = await App.Database.GetNotificationAsync();
+
+                        CurrentAmountResetter(overspendingChecker);
+
+                        AlertChecker(overspendingChecker, categoryName, double.Parse(amountEntry.Text));
+
+                        amountEntry.Text = string.Empty;
+                        categoryPicker.SelectedItem = null;
+
+                        await DisplayAlert("Confirmed", "You Entered an Expense", "OK");
+                    }
+                    else
+                    {
+                        await DisplayAlert("Alert", "You can only enter a number in the amount field!", "OK");
+                        amountEntry.Text = string.Empty;
+                        categoryPicker.SelectedItem = null;
+                    }
                 }
                 else
                 {
-                    await DisplayAlert("Alert", "You can only enter a number in the amount field!", "OK");
+                    await DisplayAlert("Alert", "You can not enter an amount greater than 1 million dollars", "OK");
                     amountEntry.Text = string.Empty;
                     categoryPicker.SelectedItem = null;
                 }

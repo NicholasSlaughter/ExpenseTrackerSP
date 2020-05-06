@@ -39,6 +39,8 @@
 							   FontAttributes="Bold"/>
 								<Label Grid.Column="2"
 							   Text="{Binding CategoryName}"/>
+								<Label Grid.Column="3"								   
+								   Text="$ "/>
 								<Label Grid.Column="3"
 							   Text="{Binding MaxAmount}"
 									   HorizontalOptions="End"/>
