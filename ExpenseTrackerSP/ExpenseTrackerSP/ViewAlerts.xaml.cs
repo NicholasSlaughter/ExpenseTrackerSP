@@ -17,9 +17,9 @@ namespace ExpenseTrackerSP
 			InitializeComponent ();
 		}
 
-        private async void NavigateButton_Settings(object sender, EventArgs e)
+        private async void NavigateButton_SetAlerts(object sender, EventArgs e)
         {
-            await Navigation.PushAsync(new SettingsPage());
+            await Navigation.PushAsync(new SetAlerts());
         }
         protected override async void OnAppearing()
         {

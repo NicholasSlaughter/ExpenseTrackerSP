@@ -23,8 +23,8 @@
     <Compile Update="ViewAlerts.xaml.cs">
       <DependentUpon>ViewAlerts.xaml</DependentUpon>
     </Compile>
-    <Compile Update="SettingsPage.xaml.cs">
-      <DependentUpon>SettingsPage.xaml</DependentUpon>
+    <Compile Update="SetAlerts.xaml.cs">
+      <DependentUpon>SetAlerts.xaml</DependentUpon>
     </Compile>
   </ItemGroup>
 
@@ -38,7 +38,7 @@
     <EmbeddedResource Update="ViewAlerts.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
-    <EmbeddedResource Update="SettingsPage.xaml">
+    <EmbeddedResource Update="SetAlerts.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
   </ItemGroup>

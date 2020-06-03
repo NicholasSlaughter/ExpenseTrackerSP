@@ -63,7 +63,7 @@
 					Grid.Column="1" 
 					Text="Set Alerts"
 					FontSize="Micro"
-					Clicked="NavigateButton_Settings"/>
+					Clicked="NavigateButton_SetAlerts"/>
 
 				<Button Text="Sort" FontSize="Micro"
 					Grid.Column="2" 

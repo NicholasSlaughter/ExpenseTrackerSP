@@ -10,9 +10,9 @@ using Xamarin.Forms.Xaml;
 namespace ExpenseTrackerSP
 {
 	[XamlCompilation(XamlCompilationOptions.Compile)]
-	public partial class SettingsPage : ContentPage
+	public partial class SetAlerts : ContentPage
 	{
-		public SettingsPage ()
+		public SetAlerts ()
 		{
 			InitializeComponent ();
 		}
@@ -28,7 +28,7 @@ namespace ExpenseTrackerSP
             {
                 if (periodPicker.SelectedIndex != -1)
                 {
-                    if (double.Parse(amountEntry.Text) <= 1000000)
+                    if (double.Parse(amountEntry.Text) >= 0 && double.Parse(amountEntry.Text) <= 1000000)
                     {
                         var categoryTemp = (Category)categoryPicker.SelectedItem;
                         var periodTemp = (Period)periodPicker.SelectedItem;
@@ -65,7 +65,7 @@ namespace ExpenseTrackerSP
                     }
                     else
                     {
-                        await DisplayAlert("Alert", "You can not enter an amount greater than 1 million dollars", "OK");
+                        await DisplayAlert("Alert", "You can only enter a number between 0 and 1 million dollars", "OK");
                         amountEntry.Text = string.Empty;
                         categoryPicker.SelectedItem = null;
                         periodPicker.SelectedItem = null;

@@ -98,26 +98,12 @@ namespace ExpenseTrackerSP
         {
             if (categoryPicker.SelectedIndex != -1)
             {
-                if (double.Parse(amountEntry.Text) <= 1000000)
+                if (double.Parse(amountEntry.Text) >= 0 && double.Parse(amountEntry.Text) <= 1000000)
                 {
                     var tempCategory = (Category)categoryPicker.SelectedItem;
                     var categoryName = tempCategory.Name;
                     double tempOut;
                     string formatedAmount = string.Format("{0:0.00}", double.Parse(amountEntry.Text));
-
-                    //Need to make Amount a string for it to have trailing 0's
-                    //string formatedDouble = null;
-
-                    //if (!formatedAmount.Contains("."))
-                    //{
-                    //    formatedAmount = formatedAmount + ".00";
-                    //}
-
-                    //formatedDouble = formatedAmount.Remove(0, formatedAmount.Length - 3);
-                    //if (!formatedDouble[0].Equals('.'))
-                    //{
-                    //    formatedAmount = formatedAmount + "0";
-                    //}
 
                     if (!string.IsNullOrWhiteSpace(amountEntry.Text) && double.TryParse(amountEntry.Text, out tempOut))
                     {
@@ -149,7 +135,7 @@ namespace ExpenseTrackerSP
                 }
                 else
                 {
-                    await DisplayAlert("Alert", "You can not enter an amount greater than 1 million dollars", "OK");
+                    await DisplayAlert("Alert", "You can only enter a number between 0 and 1 million dollars", "OK");
                     amountEntry.Text = string.Empty;
                     categoryPicker.SelectedItem = null;
                 }
