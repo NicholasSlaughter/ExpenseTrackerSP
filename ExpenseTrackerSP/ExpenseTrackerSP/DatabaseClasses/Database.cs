@@ -18,22 +18,6 @@ namespace ExpenseTrackerSP
             _database.CreateTableAsync<Expense>().Wait();
             _database.CreateTableAsync<Notification>().Wait();
             _database.CreateTableAsync<Period>().Wait();
-
-            //var db = new SQLiteConnection(dbPath);
-            //db.DropTable<Notification>();
-            //if (db.Table<Period>().Count() == 0)
-            //{
-            //    // only insert the data if it doesn't already exist
-            //    var newPeriod = new Period();
-            //    newPeriod.Name = "Week";
-            //    db.Insert(newPeriod);
-
-            //    newPeriod.Name = "Month";
-            //    db.Insert(newPeriod);
-
-            //    newPeriod.Name = "Year";
-            //    db.Insert(newPeriod);
-            //}
         }
 
         /////////////////////////////////////// Category Get Set //////////////////////////

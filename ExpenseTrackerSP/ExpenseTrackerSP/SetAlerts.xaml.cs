@@ -16,18 +16,23 @@ namespace ExpenseTrackerSP
 		{
 			InitializeComponent ();
 		}
+        //Let the pickers know which table in the database to pull from
         protected override async void OnAppearing()
         {
             base.OnAppearing();
             periodPicker.ItemsSource = await App.Database.GetPeriodAsync();
             categoryPicker.ItemsSource = await App.Database.GetCategoryAsync();
         }
+        //When a user submits an alert the program checks to see if the data is valid and if it is then the program enters it into the database.If not then an error message is displayed to the screen.
         async void SubmitButton_Clicked(object sender, EventArgs e)
         {
+            //Check to see if a category was selected
             if (categoryPicker.SelectedIndex != -1)
             {
+                //Check to see if a period was selected
                 if (periodPicker.SelectedIndex != -1)
                 {
+                    //Check to see if a valid amount was entered
                     if (double.Parse(amountEntry.Text) >= 0 && double.Parse(amountEntry.Text) <= 1000000)
                     {
                         var categoryTemp = (Category)categoryPicker.SelectedItem;
@@ -36,11 +41,12 @@ namespace ExpenseTrackerSP
                         var categoryName = categoryTemp.Name;
                         var periodName = periodTemp.Name;
                         double tempOut;
-                        string formatedAmount = string.Format("{0:0.00}", double.Parse(amountEntry.Text));
+                        string formatedAmount = string.Format("{0:0.00}", double.Parse(amountEntry.Text)); //Formats a double to the hundreth place
 
                         //error handling for amount field
                         if (!string.IsNullOrWhiteSpace(amountEntry.Text) && double.TryParse(amountEntry.Text, out tempOut))
                         {
+                            //Enters amount into the database
                             await App.Database.SaveNotificationAsync(new Notification
                             {
                                 MaxAmount = Convert.ToDouble(formatedAmount),

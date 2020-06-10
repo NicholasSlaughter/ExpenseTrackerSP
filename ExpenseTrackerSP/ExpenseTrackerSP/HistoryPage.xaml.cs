@@ -5,7 +5,6 @@ using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Linq;
 using System.Threading.Tasks;
-
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
@@ -18,13 +17,13 @@ namespace ExpenseTrackerSP
         {
             InitializeComponent();
         }
-
+        //When the page appears load the list with data from the expense table in the database
         protected override async void OnAppearing()
         {
             base.OnAppearing();
             listView.ItemsSource = await App.Database.GetExpenseAsync();
         }
-
+        //When an expense is tapped, prompt the user if they want to delete the expense or not
         async void Handle_ItemTapped(object sender, ItemTappedEventArgs e)
         {
             if (e.Item == null)
@@ -33,7 +32,7 @@ namespace ExpenseTrackerSP
 
             var temp = (Expense)((ListView)sender).SelectedItem;
 
-            if (answer)
+            if (answer) //If yes then delete the expense
             {
                 await App.Database.DeleteExpenseAsync(temp);
 
@@ -65,12 +64,12 @@ namespace ExpenseTrackerSP
             //Deselect Item
             ((ListView)sender).SelectedItem = null;
         }
-
+        //Goes to graph page
         private async void GraphPage_Clicked(object sender, EventArgs e)
         {
             await Navigation.PushAsync(new GraphPage());
         }
-
+        //Lets user pick how they want the list to be sorted
         private async void SortButton_Clicked(object sender, EventArgs e)
         {
             string answer = await DisplayActionSheet("Sort By:", "Cancel", null, "Category", "New-Old", "Old-New", "High-Low", "Low-High");

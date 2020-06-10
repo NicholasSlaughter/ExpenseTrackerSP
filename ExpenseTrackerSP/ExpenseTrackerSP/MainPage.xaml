@@ -5,7 +5,6 @@
              x:Class="ExpenseTrackerSP.MainPage">
 
 	<StackLayout>
-		 <!--Place new controls here-->
 		<StackLayout Padding="5"
 			Orientation="Horizontal">
 			<Label Text="Amount:" 
@@ -18,7 +17,7 @@
 			   PlaceholderColor="Gray"
 			   MaxLength="10"/>
 		</StackLayout>
-		
+
 		<StackLayout Padding="5"
 			Orientation="Horizontal">
 			<Label Text="Category:" 
@@ -32,7 +31,6 @@
 				ItemsSource="{Binding Category}"
 				ItemDisplayBinding="{Binding Name}"/>
 		</StackLayout>
-		<!--Include list of categories-->
 
 		<Button Text="Submit"
 				HorizontalOptions="Center"

@@ -5,7 +5,6 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
@@ -19,6 +18,7 @@ namespace ExpenseTrackerSP
 			InitializeComponent ();
         }
 
+        //When the graph page appears call the OxyPlot helper class and print the line graph
         protected override async void OnAppearing()
         {
             base.OnAppearing();
@@ -26,6 +26,7 @@ namespace ExpenseTrackerSP
             var data = new OxyData(tempList);
             BindingContext = data;
         }
+        //Sort the graph to the selected category over time
         private async void SortButton_Clicked(object sender, EventArgs e)
         {
             var temp = await App.Database.GetExpenseAsync();

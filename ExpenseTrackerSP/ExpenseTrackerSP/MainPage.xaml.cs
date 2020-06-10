@@ -13,7 +13,7 @@ namespace ExpenseTrackerSP
         {
             InitializeComponent();
         }
-
+        //If the period for the alert getting triggered has gone over its period then reset the counter to 0
         private void CurrentAmountResetter(List<Notification> overspendingChecker)
         {
             if (DateTime.Today.DayOfWeek.ToString() == "Sunday")
@@ -49,7 +49,7 @@ namespace ExpenseTrackerSP
                 }
             }
         }
-
+        //Checks to see if a user is over spending
         private async void AlertChecker(List<Notification> overspendingChecker, string categoryName, double amount)
         {
             for (int i = 0; i < overspendingChecker.Count; i++)
@@ -77,37 +77,39 @@ namespace ExpenseTrackerSP
                 }
             }
         }
-
+        //Goes to history page
         private async void NavigateButton_History(object sender, EventArgs e)
         {
             await Navigation.PushAsync(new HistoryPage());
         }
-
+        //Goes to view alerts page
         private async void ViewAlerts_Clicked(object sender, EventArgs e)
         {
             await Navigation.PushAsync(new ViewAlerts());
         }
-
+        //Let the category picker pull the categories in the database
         protected override async void OnAppearing()
         {
             base.OnAppearing();
             categoryPicker.ItemsSource = await App.Database.GetCategoryAsync();
         }
-
+        //When a user submits an expense the program checks to see if the data is valid and if it is then the program enters it into the database. If not then an error message is displayed to the screen.
         async void SubmitButton_Clicked(object sender, EventArgs e)
         {
+            double tempOut;
+            //Check to see if a category was picked
             if (categoryPicker.SelectedIndex != -1)
             {
-                if (double.Parse(amountEntry.Text) >= 0 && double.Parse(amountEntry.Text) <= 1000000)
+                //Check to see if a valid expense was entered
+                if (double.TryParse(amountEntry.Text, out tempOut) && double.Parse(amountEntry.Text) >= 0 && double.Parse(amountEntry.Text) <= 1000000)
                 {
                     var tempCategory = (Category)categoryPicker.SelectedItem;
                     var categoryName = tempCategory.Name;
-                    double tempOut;
-                    string formatedAmount = string.Format("{0:0.00}", double.Parse(amountEntry.Text));
+                    string formatedAmount = string.Format("{0:0.00}", double.Parse(amountEntry.Text)); //Formats a double to the hundreth place
 
                     if (!string.IsNullOrWhiteSpace(amountEntry.Text) && double.TryParse(amountEntry.Text, out tempOut))
                     {
-
+                        //Enter data into the database
                         await App.Database.SaveExpenseAsync(new Expense
                         {
                             Amount = Convert.ToDouble(formatedAmount),

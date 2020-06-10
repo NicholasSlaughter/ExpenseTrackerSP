@@ -5,6 +5,8 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 
+//Information to use OxyPlot comes from the following website:
+//https://www.c-sharpcorner.com/article/using-oxyplot-with-xamarin-forms/
 namespace ExpenseTrackerSP
 {
     public class OxyData
@@ -13,13 +15,13 @@ namespace ExpenseTrackerSP
 
         public OxyData(List<Expense> e)
         {
-            LineModel = CreateLineChart(e);
+            LineModel = CreateLineChart(e); //Sets the model to be a line graph
         }
-
+        //Inputs data into the line graph
         public PlotModel CreateLineChart(List<Expense> expense)
         {
             var plotModel = new PlotModel { Title = "Expenses Over Time" };
-            var lineSeries = new LineSeries()
+            var lineSeries = new LineSeries() //sets the line graph elements
             {
                 Color = OxyColors.SkyBlue,
                 MarkerType = MarkerType.Circle,
@@ -35,7 +37,7 @@ namespace ExpenseTrackerSP
 
             for (int i = 0; i < counter; i++)
             {
-                lineSeries.Points.Add(new DataPoint(DateTimeAxis.ToDouble(expense[i].Date), expense[i].Amount));
+                lineSeries.Points.Add(new DataPoint(DateTimeAxis.ToDouble(expense[i].Date), expense[i].Amount)); //Adds points to the graph
             }
 
             plotModel.Series.Add(lineSeries);

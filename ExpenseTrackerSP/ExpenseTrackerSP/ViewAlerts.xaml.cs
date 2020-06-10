@@ -16,17 +16,18 @@ namespace ExpenseTrackerSP
 		{
 			InitializeComponent ();
 		}
-
+        //Goes to Set Alert page
         private async void NavigateButton_SetAlerts(object sender, EventArgs e)
         {
             await Navigation.PushAsync(new SetAlerts());
         }
+        //Tells the list to use the data from the Notification table
         protected override async void OnAppearing()
         {
             base.OnAppearing();
             alertsListView.ItemsSource = await App.Database.GetNotificationAsync();
         }
-
+        //When an alert is selected in the list, the program asks the user if they want to delete the alert or not. If yes the alert is deleted. If no the alert stays.
         async void Handle_ItemTapped(object sender, ItemTappedEventArgs e)
         {
             if (e.Item == null)
@@ -45,6 +46,7 @@ namespace ExpenseTrackerSP
             //Deselect Item
             ((ListView)sender).SelectedItem = null;
         }
+        //Sorts the list how the users wants it to be sorted
         private async void SortButton_Clicked(object sender, EventArgs e)
         {
             string answer = await DisplayActionSheet("Sort By:", "Cancel", null, "Category", "Period", "High-Low", "Low-High");

@@ -17,8 +17,8 @@
 				   Text="Amount">
 			</Label>
 		</StackLayout>
-		
-			<ListView x:Name="listView"	
+
+		<ListView x:Name="listView"	
 					  ItemTapped="Handle_ItemTapped">
 			<ListView.ItemTemplate>
 				<DataTemplate>
@@ -49,11 +49,6 @@
 				</DataTemplate>
 			</ListView.ItemTemplate>
 		</ListView>
-		<!--<Button 
-				Text="Graph Page"
-				HorizontalOptions="Center"
-				VerticalOptions="EndAndExpand"
-				Clicked="GraphPage_Clicked"/>-->
 		<Grid>
 			<Grid.RowDefinitions>
 				<RowDefinition Height="*"/>

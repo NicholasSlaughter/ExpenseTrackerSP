@@ -9,7 +9,7 @@ namespace ExpenseTrackerSP
     public partial class App : Application
     {
         static Database database;
-
+        //Initializes database
         public static Database Database
         {
             get
@@ -26,7 +26,7 @@ namespace ExpenseTrackerSP
         {
             InitializeComponent();
 
-            MainPage = new NavigationPage(new MainPage());
+            MainPage = new NavigationPage(new MainPage()); //Sets main page to be the navigation page
         }
 
         protected override void OnStart()
