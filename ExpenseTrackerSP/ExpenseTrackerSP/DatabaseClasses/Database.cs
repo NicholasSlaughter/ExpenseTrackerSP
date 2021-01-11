@@ -18,6 +18,39 @@ namespace ExpenseTrackerSP
             _database.CreateTableAsync<Expense>().Wait();
             _database.CreateTableAsync<Notification>().Wait();
             _database.CreateTableAsync<Period>().Wait();
+
+            //Initializes the Caterogies if it has no elements
+            Task<int> catCount = _database.Table<Category>().CountAsync();
+            if (catCount.Result == 0)
+            {
+                var newCat = new Category();
+                newCat.Name = "Eating Out";
+                _database.InsertAsync(newCat);
+                newCat = new Category();
+                newCat.Name = "Entertainment";
+                _database.InsertAsync(newCat);
+                newCat = new Category();
+                newCat.Name = "Groceries";
+                _database.InsertAsync(newCat);
+                newCat = new Category();
+                newCat.Name = "Other";
+                _database.InsertAsync(newCat);
+            }
+
+            //Initializes the Periods if it has no elements
+            Task<int> perCount = _database.Table<Period>().CountAsync();
+            if (perCount.Result == 0)
+            {
+                var newPer = new Period();
+                newPer.Name = "Week";
+                _database.InsertAsync(newPer);
+                newPer = new Period();
+                newPer.Name = "Month";
+                _database.InsertAsync(newPer);
+                newPer = new Period();
+                newPer.Name = "Year";
+                _database.InsertAsync(newPer);
+            }
         }
 
         /////////////////////////////////////// Category Get Set //////////////////////////

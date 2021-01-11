@@ -20,8 +20,8 @@
 			</Grid.ColumnDefinitions>
 
 			<Button Text="Sort" FontSize="Micro"
-					Grid.Row="6"
-					Grid.Column="3" 
+					Grid.Row="10"
+					Grid.Column="4" 
 					Clicked="SortButton_Clicked"/>
 		</Grid>
 	</AbsoluteLayout>
